@@ -79,7 +79,7 @@ export default class CustomPricerApi {
     ): Promise<R> {
         const options: AxiosRequestConfig = {
             method: httpMethod as Method,
-            url: `${this.url ? this.url : 'https://api.prices.tf'}${path}`,
+            url: `${this.url ? this.url : 'https://pricedb.io/api'}${path}`,
             headers: {
                 'User-Agent': 'TF2AutobotPriceDB@' + process.env.BOT_VERSION
             },
@@ -107,15 +107,15 @@ export default class CustomPricerApi {
     }
 
     requestCheck(sku: string): Promise<CustomPricerPricesRequestCheckResponse> {
-        return this.apiRequest('POST', `/items/${sku}`, { source: 'bptf' });
+        return this.apiRequest('POST', `/autob/items/${sku}`, { source: 'bptf' });
     }
 
     getPrice(sku: string): Promise<CustomPricesGetItemPriceResponse> {
-        return this.apiRequest('GET', `/items/${sku}`, { src: 'bptf' });
+        return this.apiRequest('GET', `/autob/items/${sku}`, { src: 'bptf' });
     }
 
     getPricelist(): Promise<CustomPricesGetPricelistResponse> {
-        return this.apiRequest('GET', '/items', { src: 'bptf' });
+        return this.apiRequest('GET', '/autob/items', { src: 'bptf' });
     }
 
     getOptions(): PricerOptions {
